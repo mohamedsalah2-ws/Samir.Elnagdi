@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project — Samir.Elnagdi</title>
+<link rel="icon" type="image/png" href="favicon.png">
+   <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <div id="theme-overlay" aria-hidden="true"></div>
+
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-a">Samir</span><span class="logo-dot">.</span><span class="logo-studio">Elnagdi</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+        <li><a href="index.html#works"     class="nav-link">Works</a></li>
+        <li><a href="index.html#about"     class="nav-link">About</a></li>
+        <li><a href="index.html#contact"   class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="index.html#contact" class="nav-cta magnetic">Let's Talk</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="pj-hero">
+    <div class="container pj-hero-inner">
+      <div class="pj-meta-top">
+        <a href="index.html#works" class="pj-back-btn magnetic">← Back to Works</a>
+        <div id="pj-meta-row" class="pj-tags-row"></div>
+      </div>
+      <h1 class="pj-title" id="pj-title">—</h1>
+      <p class="pj-lead" id="pj-lead"></p>
+      <div class="pj-cta-row" id="pj-cta-row"></div>
+    </div>
+  </header>
+
+  <div class="pj-featured-wrap">
+    <div class="pj-featured" id="pj-featured">
+      <div class="pj-featured-placeholder" id="pj-feat-placeholder">
+        <div class="pj-fp-icon" id="pj-fp-icon">◫</div>
+      </div>
+    </div>
+  </div>
+
+  <main class="pj-main-content">
+    <div class="container pj-content-grid">
+      
+      <aside class="pj-sidebar">
+        <div class="pj-sidebar-inner">
+          <div class="pj-sb-block">
+            <h4 class="pj-sb-title">Project Details</h4>
+            <dl class="pj-sb-dl" id="pj-qf-dl"></dl>
+          </div>
+          <div class="pj-sb-block">
+            <h4 class="pj-sb-title">Tech Stack</h4>
+            <div class="pj-sb-pills" id="pj-qf-pills"></div>
+          </div>
+        </div>
+      </aside>
+
+      <article class="pj-story">
+        <div class="pj-story-section">
+          <h2 class="pj-story-heading">Overview</h2>
+          <div class="pj-story-text" id="pj-overview-text">Loading...</div>
+        </div>
+
+        <div id="pj-csr-section">
+          <div class="pj-story-section" id="pj-csr-c">
+            <h2 class="pj-story-heading">The Challenge</h2>
+            <p class="pj-story-text" id="pj-csr-c-text"></p>
+          </div>
+          <div class="pj-story-section" id="pj-csr-s">
+            <h2 class="pj-story-heading">The Solution</h2>
+            <p class="pj-story-text" id="pj-csr-s-text"></p>
+          </div>
+          <div class="pj-story-section" id="pj-csr-r">
+            <h2 class="pj-story-heading">The Result</h2>
+            <p class="pj-story-text" id="pj-csr-r-text"></p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <div class="pj-gallery-strip" id="pj-gallery-strip"></div>
+
+  <nav class="pj-nav-section" aria-label="Project navigation">
+    <div class="container pj-nav-inner">
+      <div class="pj-nav-pair">
+        <a class="pj-nav-btn pj-nav-prev magnetic" id="pj-prev" href="#">
+          <span class="pj-navbtn-arrow">←</span>
+          <span class="pj-navbtn-info">
+            <span class="pj-navbtn-dir">Previous</span>
+            <span class="pj-navbtn-title" id="pj-prev-title">—</span>
+          </span>
+        </a>
+        <a class="pj-nav-btn pj-nav-next magnetic" id="pj-next" href="#">
+          <span class="pj-navbtn-info" style="text-align:right">
+            <span class="pj-navbtn-dir">Next</span>
+            <span class="pj-navbtn-title" id="pj-next-title">—</span>
+          </span>
+          <span class="pj-navbtn-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <footer id="footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="footer-logo">Samir<span>.</span>Elnagdi</a>
+      <p class="footer-copy">© 2026 <Samir class="Elnagdi"></Samir> — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="projects.js"></script>
+  <script src="project-page.js"></script>
+</body>
+</html>

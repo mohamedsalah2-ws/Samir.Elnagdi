@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation Projects — Samir.Elnagdi</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+   <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ستايل صفحة الأوتوميشن المخصص */
+    .pj-hero { padding-top: 140px; padding-bottom: 60px; text-align: center; }
+    .pj-back-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); transition: color 0.3s; display: inline-block; margin-bottom: 2rem; }
+    .pj-back-btn:hover { color: var(--text); }
+    .auto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; margin-top: 3.5rem; padding-bottom: 8rem; }
+    .auto-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; position: relative; transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s; }
+    .auto-card:hover { transform: translateY(-6px); border-color: var(--border-3); box-shadow: var(--shadow-sm); }
+    .auto-img { width: 100%; aspect-ratio: 16/9; background: var(--bg-3); overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-2); position: relative; }
+    .auto-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .auto-card:hover .auto-img img { transform: scale(1.05); }
+    .auto-badge { position: absolute; top: 2.5rem; right: 2.5rem; background: rgba(93, 191, 160, 0.12); color: var(--green); border: 1px solid rgba(93, 191, 160, 0.35); padding: 0.35rem 0.8rem; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; backdrop-filter: blur(4px); z-index: 2; }
+    .auto-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .flow-node { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--accent); background: var(--accent-dim2); border: 1px solid rgba(200,162,85,0.25); padding: 0.35rem 0.65rem; }
+    .flow-arrow { color: var(--text-4); font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; }
+    .auto-title { font-family: 'Fraunces', Georgia, serif; font-size: 1.35rem; font-weight: 300; color: var(--text); margin-bottom: 0.8rem; line-height: 1.2; }
+    .auto-desc { font-size: 0.88rem; color: var(--text-2); line-height: 1.75; }
+    @media (max-width: 768px) { .auto-grid { grid-template-columns: 1fr; } .auto-badge { top: 2rem; right: 2rem; } }
+  </style>
+</head>
+<body>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-a">Samir</span><span class="logo-dot">.</span><span class="logo-studio">Elnagdi</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+        <li><a href="index.html#works" class="nav-link">Works</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="index.html#contact" class="nav-cta magnetic">Let's Talk</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="pj-hero">
+    <div class="container">
+      <a href="index.html#works" class="pj-back-btn magnetic">← Back to Works</a>
+      <div class="section-tag" style="justify-content: center;" data-reveal>n8n Architecture</div>
+      <h1 class="section-title" data-reveal data-delay="80" style="font-size: clamp(3rem, 6vw, 5rem);">Automation <em>Projects</em></h1>
+      <p class="section-sub" data-reveal data-delay="160" style="margin: 0 auto; max-width: 600px;">
+        A comprehensive collection of autonomous workflows, AI agents, and custom API integrations built to eliminate repetitive work and scale businesses effortlessly.
+      </p>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <div class="auto-grid">
+
+        <div class="auto-card" data-reveal data-delay="0">
+          <div class="auto-img"><img src="images/auto3.jpg" alt="RAG Chatbot"></div>
+          <div class="auto-flow">
+            <span class="flow-node">Knowledge Base</span><span class="flow-arrow">→</span>
+            <span class="flow-node">Pinecone</span><span class="flow-arrow">→</span><span class="flow-node">Chat</span>
+          </div>
+          <h3 class="auto-title">RAG Chatbot</h3>
+          <p class="auto-desc">Full RAG pipeline — syncs knowledge from Google Drive, splits & embeds via OpenAI, stores in Pinecone Vector Store, then serves accurate AI answers through a chat interface.</p>
+        </div>
+
+        <div class="auto-card" data-reveal data-delay="100">
+          <div class="auto-img"><img src="images/auto2.jpg" alt="WhatsApp Multi-Agent"></div>
+          <span class="auto-badge">Live</span>
+          <div class="auto-flow">
+            <span class="flow-node">Webhook</span><span class="flow-arrow">→</span>
+            <span class="flow-node">Orchestrator</span><span class="flow-arrow">→</span><span class="flow-node">Text / Voice / Image</span>
+          </div>
+          <h3 class="auto-title">WhatsApp Multi-Agent</h3>
+          <p class="auto-desc">WhatsApp-powered AI system handling Text, Voice & Image — connected to Social Media, Web Search, Email & Calendar agents for complete task automation.</p>
+        </div>
+
+        <div class="auto-card" data-reveal data-delay="200">
+          <div class="auto-img"><img src="images/auto5.jpg" alt="Telegram Multi-Agent Bot"></div>
+          <span class="auto-badge">Live</span>
+          <div class="auto-flow">
+            <span class="flow-node">Telegram Trigger</span><span class="flow-arrow">→</span>
+            <span class="flow-node">Orchestrator</span><span class="flow-arrow">→</span><span class="flow-node">Text / Voice / Image</span>
+          </div>
+          <h3 class="auto-title">Telegram Multi-Agent Bot</h3>
+          <p class="auto-desc">Telegram bot with Orchestrator Agent that routes Text, Voice & Image to dedicated pipelines — powered by OpenAI with memory, Think node, and Facebook Agent integration.</p>
+        </div>
+
+        <div class="auto-card" data-reveal data-delay="0">
+          <div class="auto-img"><img src="images/auto8.jpg" alt="HR Automation Agent"></div>
+          <span class="auto-badge">Live</span>
+          <div class="auto-flow">
+            <span class="flow-node">Telegram Trigger</span><span class="flow-arrow">→</span>
+            <span class="flow-node">GPT_5 Agent</span><span class="flow-arrow">→</span><span class="flow-node">Gmail / Calendar</span>
+          </div>
+          <h3 class="auto-title">HR Automation Agent</h3>
+          <p class="auto-desc">An AI-powered HR assistant that sends automated emails to employees via Gmail, schedules meetings and creates events in Google Calendar, and reads employee data from Google Sheets — all triggered through Telegram.</p>
+        </div>
+
+        <div class="auto-card" data-reveal data-delay="100">
+          <div class="auto-img"><img src="images/auto6.jpg" alt="AI Agent — Grok + Sheets + Gmail"></div>
+          <span class="auto-badge">Live</span>
+          <div class="auto-flow">
+            <span class="flow-node">Chat Trigger</span><span class="flow-arrow">→</span>
+            <span class="flow-node">AI Agent</span><span class="flow-arrow">→</span><span class="flow-node">Sheets / Gmail</span>
+          </div>
+          <h3 class="auto-title">AI Agent — Grok + Sheets + Gmail</h3>
+          <p class="auto-desc">A smart AI Agent powered by xAI Grok with memory, connected to Google Sheets for data retrieval and Gmail for automated email sending — all from a single chat trigger.</p>
+        </div>
+
+        <div class="auto-card" data-reveal data-delay="200">
+          <div class="auto-img"><img src="images/auto1.jpg" alt="Messenger Multi-Agent"></div>
+          <span class="auto-badge">Live</span>
+          <div class="auto-flow">
+            <span class="flow-node">Webhook</span><span class="flow-arrow">→</span>
+            <span class="flow-node">Orchestrator</span><span class="flow-arrow">→</span><span class="flow-node">Text / Voice / Image</span>
+          </div>
+          <h3 class="auto-title">Messenger Multi-Agent</h3>
+          <p class="auto-desc">A full-scale multi-agent system via Webhook — handles Text, Voice & Image with an Orchestrator Agent, plus Social Media, Web Search, Email & Calendar sub-agents.</p>
+        </div>
+
+        <div class="auto-card" data-reveal data-delay="0">
+          <div class="auto-img"><img src="images/auto4.jpg" alt="Form → AI → Google Sheets"></div>
+          <div class="auto-flow">
+            <span class="flow-node">Form Submit</span><span class="flow-arrow">→</span>
+            <span class="flow-node">OpenAI</span><span class="flow-arrow">→</span><span class="flow-node">Sheets</span>
+          </div>
+          <h3 class="auto-title">Form → AI → Google Sheets</h3>
+          <p class="auto-desc">Automated pipeline that captures form submissions, processes them through an OpenAI model, merges the AI response with the original data, and appends everything to Google Sheets.</p>
+        </div>
+
+        <div class="auto-card" data-reveal data-delay="100">
+          <div class="auto-img"><img src="images/auto7.jpg" alt="Telegram Video Downloader Bot"></div>
+          <span class="auto-badge">Live</span>
+          <div class="auto-flow">
+            <span class="flow-node">Telegram Trigger</span><span class="flow-arrow">→</span>
+            <span class="flow-node">Switch</span><span class="flow-arrow">→</span><span class="flow-node">HTTP Request</span><span class="flow-arrow">→</span><span class="flow-node">Send Video</span>
+          </div>
+          <h3 class="auto-title">Telegram Video Downloader Bot</h3>
+          <p class="auto-desc">A Telegram bot that downloads videos from Instagram and Facebook. Detects the platform via a Switch node, fetches the video through HTTP Request, and sends it back directly in the chat.</p>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;" data-reveal>
+        <a href="https://github.com/mohamedsalah2-ws/n8nprojects/tree/main/n8n%20projects" target="_blank" class="btn-ghost magnetic" style="display:inline-flex; align-items:center; gap:10px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          VIEW REPOSITORY ON GITHUB
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="footer" style="border-top: 1px solid var(--border);">
+    <div class="container footer-inner">
+      <a href="index.html" class="footer-logo">Samir<span>.</span>Elnagdi</a>
+      <p class="footer-copy">© 2026 <Samir class="Elnagdi"></Samir> — All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

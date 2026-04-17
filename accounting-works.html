@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CPA & Strategic Accounting — Samir.Elnagdi</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+   <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ══ ACCOUNTING PAGE CUSTOM STYLES (WITH IMAGES) ══ */
+    .pj-hero { padding-top: 140px; padding-bottom: 60px; text-align: center; }
+    .pj-back-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); transition: color 0.3s; display: inline-block; margin-bottom: 2rem; }
+    .pj-back-btn:hover { color: var(--text); }
+    
+    .ac-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 3rem; padding-bottom: 8rem; }
+    
+    .ac-card { background: var(--bg-card); border: 1px solid var(--border); position: relative; transition: all 0.5s cubic-bezier(.16,1,.3,1); overflow: hidden; display: flex; flex-direction: column; }
+    .ac-card:hover { border-color: var(--accent); transform: translateY(-8px); box-shadow: var(--shadow); }
+    
+    /* Image Section */
+    .ac-media { width: 100%; aspect-ratio: 16/10; background: var(--bg-3); overflow: hidden; border-bottom: 1px solid var(--border); position: relative; }
+    .ac-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; filter: brightness(0.7) grayscale(0.5); /* Conservative tint */ }
+    .ac-card:hover .ac-media img { transform: scale(1.04); filter: brightness(1) grayscale(0); }
+    
+    /* Overlay icon on image */
+    .ac-meta-icon { position: absolute; bottom: 1.5rem; left: 1.5rem; font-size: 1.3rem; background: rgba(8,8,10,0.7); padding: 0.6rem; border-radius: 50%; backdrop-filter: blur(4px); border: 1px solid var(--border-2); z-index: 2; opacity: 0.9; color: var(--accent); }
+
+    .ac-info { padding: 2.5rem; flex: 1; display: flex; flex-direction: column; }
+    .ac-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1rem; display: block; }
+    .ac-title { font-family: 'Fraunces', serif; font-size: 1.7rem; font-weight: 300; margin-bottom: 1.2rem; color: var(--text); line-height: 1.2; }
+    .ac-desc { font-size: 0.95rem; color: var(--text-2); line-height: 1.9; margin-bottom: 2rem; flex: 1; }
+    
+    .ac-list { list-style: none; margin-bottom: 2.5rem; border-left: 1px solid var(--border-2); padding-left: 1.5rem; }
+    .ac-list li { font-size: 0.88rem; color: var(--text-3); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.8rem; }
+    .ac-list li::before { content: '✓'; color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+
+    .ac-tech-stack { display: flex; flex-wrap: wrap; gap: 0.6rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+    .ac-tech-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--text-4); border: 1px solid var(--border-2); padding: 0.25rem 0.6rem; }
+
+    @media (max-width: 768px) { .ac-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  </style>
+</head>
+<body>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-a">Samir</span><span class="logo-dot">.</span><span class="logo-studio">Elnagdi</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+        <li><a href="index.html#works" class="nav-link">Works</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions"><a href="index.html#contact" class="nav-cta magnetic">Let's Talk</a></div>
+    </div>
+  </nav>
+
+  <header class="pj-hero">
+    <div class="container">
+      <a href="index.html#works" class="pj-back-btn magnetic">← Back to Portfolios</a>
+      <div class="section-tag" style="justify-content: center;" data-reveal>Financial Stewardship & Advisory</div>
+      <h1 class="section-title" data-reveal data-delay="80" style="font-size: clamp(3rem, 6vw, 5rem);">CPA & <em>Accounting</em></h1>
+      <p class="section-sub" data-reveal data-delay="160" style="margin: 0 auto; max-width: 650px;">
+        Providing rigorous financial oversight, strategic advisory, and regulatory compliance to ensure business longevity and profitable growth.
+      </p>
+    </div>
+  </header>
+
+  <section style="padding-top: 2rem;">
+    <div class="container">
+      <div class="ac-grid">
+
+        <article class="ac-card" data-reveal>
+          <div class="ac-media">
+            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop" alt="Strategic Financial Advisory">
+            <span class="ac-meta-icon">💡</span>
+          </div>
+          <div class="ac-info">
+            <span class="ac-tag">Advisory</span>
+            <h3 class="ac-title">Strategic Financial Advisory</h3>
+            <p class="ac-desc">Long-term financial planning for a tech startup, translating complex data into actionable business strategies for growth.</p>
+            <ul class="ac-list">
+              <li>Cash Flow Forecasting</li>
+              <li>Market Expansion Strategy</li>
+              <li>Operational Cost Optimisation</li>
+            </ul>
+            <div class="ac-tech-stack">
+              <span class="ac-tech-tag">Financial Modeling</span><span class="ac-tech-tag">Tax Strategy</span><span class="ac-tech-tag">IFRS</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="ac-card" data-reveal data-delay="100">
+          <div class="ac-media">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop" alt="Tax Compliance & Strategy">
+            <span class="ac-meta-icon">📊</span>
+          </div>
+          <div class="ac-info">
+            <span class="ac-tag">CPA & Tax</span>
+            <h3 class="ac-title">Corporate Tax Strategy & Compliance</h3>
+            <p class="ac-desc">Year-end tax planning and filing for a multinational corporation, ensuring full compliance while legally minimising liability.</p>
+            <ul class="ac-list">
+              <li>International Tax Compliance</li>
+              <li>Legitimize Tax Minimization</li>
+              <li>Audit Representation</li>
+            </ul>
+            <div class="ac-tech-stack">
+              <span class="ac-tech-tag">Corporate Tax</span><span class="ac-tech-tag">Audit</span><span class="ac-tech-tag">Regulatory</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="ac-card" data-reveal data-delay="200">
+          <div class="ac-media">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="CFO-Level Financial Analysis">
+            <span class="ac-meta-icon">📈</span>
+          </div>
+          <div class="ac-info">
+            <span class="ac-tag">Strategic Accounting</span>
+            <h3 class="ac-title">CFO-Level Financial Analysis</h3>
+            <p class="ac-desc">In-depth analysis of quarterly performance dashboards, identifying key profitability drivers and operational bottlenecks.</p>
+            <ul class="ac-list">
+              <li>Profitability Analysis</li>
+              <li>KPI Dashboard Design</li>
+              <li>Variance Analysis</li>
+            </ul>
+            <div class="ac-tech-stack">
+              <span class="ac-tech-tag">Financial Modeling</span><span class="ac-tech-tag">Excel</span><span class="ac-tech-tag">IFRS</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="ac-card" data-reveal>
+          <div class="ac-media">
+            <img src="https://images.unsplash.com/photo-1610411800109-b68c9287c881?q=80&w=800&auto=format&fit=crop" alt="Audit & Compliance Review">
+            <span class="ac-meta-icon">🔍</span>
+          </div>
+          <div class="ac-info">
+            <span class="ac-tag">Auditing</span>
+            <h3 class="ac-title">Comprehensive Audit & Compliance</h3>
+            <p class="ac-desc">Internal audit for a logistics firm, ensuring data accuracy, operational efficiency, and strict adherence to GAAP standards.</p>
+            <ul class="ac-list">
+              <li>Internal Controls Review</li>
+              <li>GAAP Compliance</li>
+              <li>Fraud Risk Assessment</li>
+            </ul>
+            <div class="ac-tech-stack">
+              <span class="ac-tech-tag">Audit</span><span class="ac-tech-tag">GAAP</span><span class="ac-tech-tag">Regulatory</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer" style="border-top: 1px solid var(--border);">
+    <div class="container footer-inner">
+      <a href="index.html" class="footer-logo">Samir<span>.</span>Elnagdi</a>
+      <p class="footer-copy">© 2026 <Samir class="ELnagdi"></Samir> — Financial Dept.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

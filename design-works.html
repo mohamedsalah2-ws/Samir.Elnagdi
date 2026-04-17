@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Graphic & Brand Design — Samir.Elnagdi</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+   <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ══ DESIGN PAGE CUSTOM STYLES ══ */
+    .pj-hero { padding-top: 140px; padding-bottom: 60px; text-align: center; }
+    .pj-back-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); transition: color 0.3s; display: inline-block; margin-bottom: 2rem; }
+    .pj-back-btn:hover { color: var(--text); }
+
+    .design-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 8rem; }
+    
+    .design-card { background: var(--bg); position: relative; overflow: hidden; aspect-ratio: 1/1; cursor: crosshair; }
+    .design-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(.16,1,.3,1); }
+    .design-card:hover img { transform: scale(1.05); filter: brightness(0.4); }
+
+    .design-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s; padding: 2rem; text-align: center; }
+    .design-card:hover .design-overlay { opacity: 1; }
+
+    .ds-cat { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 0.8rem; transform: translateY(10px); transition: transform 0.4s; }
+    .ds-title { font-family: 'Fraunces', serif; font-size: 1.4rem; color: #fff; font-weight: 200; transform: translateY(10px); transition: transform 0.4s 0.1s; }
+    .design-card:hover .ds-cat, .design-card:hover .ds-title { transform: translateY(0); }
+
+    .section-divider { padding: 4rem 0 2rem; font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--text-4); text-transform: uppercase; letter-spacing: 0.4em; text-align: center; }
+
+    @media (max-width: 768px) { .design-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-a">Samir</span><span class="logo-dot">.</span><span class="logo-studio">Elnagdi</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+        <li><a href="index.html#works" class="nav-link">Works</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions"><a href="index.html#contact" class="nav-cta magnetic">Let's Talk</a></div>
+    </div>
+  </nav>
+
+  <header class="pj-hero">
+    <div class="container">
+      <a href="index.html#works" class="pj-back-btn magnetic">← Back to Portfolios</a>
+      <div class="section-tag" style="justify-content: center;" data-reveal>Visual Identity Archive</div>
+      <h1 class="section-title" data-reveal data-delay="80" style="font-size: clamp(3rem, 6vw, 5rem);">Brand <em>Design</em></h1>
+      <p class="section-sub" data-reveal data-delay="160" style="margin: 0 auto; max-width: 650px;">
+        Crafting modern, minimalist, and enduring visual systems. From typography-led logos to comprehensive brand guidelines.
+      </p>
+    </div>
+  </header>
+
+  <div class="section-divider">Selected Identity Works</div>
+
+  <section>
+    <div class="container-fluid" style="max-width: 1600px; margin: 0 auto;">
+      <div class="design-grid">
+
+        <article class="design-card" data-reveal>
+          <img src="images/design1.jpg" alt="Brand Identity">
+          <div class="design-overlay">
+            <span class="ds-cat">Minimalist Logo</span>
+            <h3 class="ds-title">Ethereal Studio</h3>
+          </div>
+        </article>
+
+        <article class="design-card" data-reveal data-delay="100">
+          <img src="images/design2.jpg" alt="Typography Design">
+          <div class="design-overlay">
+            <span class="ds-cat">Typography</span>
+            <h3 class="ds-title">Modern Sans System</h3>
+          </div>
+        </article>
+
+        <article class="design-card" data-reveal data-delay="200">
+          <img src="images/design3.jpg" alt="Corporate Branding">
+          <div class="design-overlay">
+            <span class="ds-cat">Brand Guidelines</span>
+            <h3 class="ds-title">TechnoCore Systems</h3>
+          </div>
+        </article>
+
+        <article class="design-card" data-reveal>
+          <img src="images/design4.jpg" alt="Packaging">
+          <div class="design-overlay">
+            <span class="ds-cat">Premium Packaging</span>
+            <h3 class="ds-title">Noir Fragrance</h3>
+          </div>
+        </article>
+
+        <article class="design-card" data-reveal data-delay="100">
+          <img src="images/design5.jpg" alt="Social Media Branding">
+          <div class="design-overlay">
+            <span class="ds-cat">Digital Assets</span>
+            <h3 class="ds-title">Influencer Identity</h3>
+          </div>
+        </article>
+
+        <article class="design-card" data-reveal data-delay="200">
+          <img src="images/design6.jpg" alt="Print Design">
+          <div class="design-overlay">
+            <span class="ds-cat">Editorial</span>
+            <h3 class="ds-title">Luxury Lookbook</h3>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer" style="border-top: 1px solid var(--border);">
+    <div class="container footer-inner">
+      <a href="index.html" class="footer-logo">Samir<span>.</span>Elnagdi</a>
+      <p class="footer-copy">© 2026 <Samir class="Elnagdi"></Samir> — Creative Identity Dept.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

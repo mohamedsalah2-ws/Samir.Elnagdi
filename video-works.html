@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Editing & Motion — Samir.Elnagdi</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+   <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ══ VIDEO PAGE CUSTOM STYLES ══ */
+    .pj-hero { padding-top: 140px; padding-bottom: 60px; text-align: center; }
+    .pj-back-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); transition: color 0.3s; display: inline-block; margin-bottom: 2rem; }
+    .pj-back-btn:hover { color: var(--text); }
+    
+    .video-section { margin-bottom: 8rem; }
+    .section-label-alt { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 2rem; display: block; }
+    
+    .v-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 3rem; }
+    
+    .v-card { background: var(--bg-card); border: 1px solid var(--border); transition: all 0.5s cubic-bezier(.16,1,.3,1); }
+    .v-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+    
+    .v-player { width: 100%; aspect-ratio: 16/9; background: #000; position: relative; overflow: hidden; }
+    .v-player video { width: 100%; height: 100%; object-fit: cover; }
+    
+    .v-meta { padding: 1.8rem; }
+    .v-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--text-4); text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
+    .v-title { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 300; color: var(--text); margin-bottom: 0.8rem; }
+    .v-desc { font-size: 0.85rem; color: var(--text-3); line-height: 1.7; margin-bottom: 1.2rem; }
+    
+    .v-tools { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .tool-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--accent); border: 1px solid rgba(200,162,85,0.2); padding: 0.2rem 0.5rem; background: var(--accent-dim2); }
+
+    /* Vertical video support */
+    .v-grid.vertical { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .v-grid.vertical .v-player { aspect-ratio: 9/16; }
+
+    @media (max-width: 768px) { .v-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-a">Samir</span><span class="logo-dot">.</span><span class="logo-studio">Elnagdi</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+        <li><a href="index.html#works" class="nav-link">Works</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions"><a href="index.html#contact" class="nav-cta magnetic">Let's Talk</a></div>
+    </div>
+  </nav>
+
+  <header class="pj-hero">
+    <div class="container">
+      <a href="index.html#works" class="pj-back-btn magnetic">← Back to Portfolios</a>
+      <div class="section-tag" style="justify-content: center;" data-reveal>Cinematic & Motion Archive</div>
+      <h1 class="section-title" data-reveal data-delay="80" style="font-size: clamp(3rem, 6vw, 5rem);">Video <em>Editing</em></h1>
+      <p class="section-sub" data-reveal data-delay="160" style="margin: 0 auto; max-width: 650px;">
+        High-end post-production services including precision cutting, advanced color grading, and dynamic motion graphics that elevate visual narratives.
+      </p>
+    </div>
+  </header>
+
+  <section style="padding-top: 2rem; padding-bottom: 8rem;">
+    <div class="container">
+
+      <div class="video-section" data-reveal>
+        <span class="section-label-alt">Commercial & Brand Films</span>
+        <div class="v-grid">
+          
+          <article class="v-card">
+            <div class="v-player">
+              <video controls preload="metadata" poster="images/v-thumb1.jpg">
+                <source src="videos/brand_film1.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="v-meta">
+              <span class="v-tag">Corporate Narrative</span>
+              <h3 class="v-title">Restaurant Launch Film</h3>
+              <p class="v-desc">A cinematic journey through culinary arts, focusing on texture, lighting, and rhythmic editing to match the brand's upscale identity.</p>
+              <div class="v-tools"><span class="tool-badge">Premiere Pro</span><span class="tool-badge">DaVinci Resolve</span><span class="tool-badge">Color Grading</span></div>
+            </div>
+          </article>
+
+          <article class="v-card">
+            <div class="v-player">
+              <video controls preload="metadata" poster="images/v-thumb2.jpg">
+                <source src="videos/brand_film2.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="v-meta">
+              <span class="v-tag">Brand Story</span>
+              <h3 class="v-title">Business Solutions Promo</h3>
+              <p class="v-desc">Clean, corporate storytelling integrated with subtle motion graphics to explain complex service offerings.</p>
+              <div class="v-tools"><span class="tool-badge">Premiere Pro</span><span class="tool-badge">After Effects</span><span class="tool-badge">Motion Design</span></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="video-section" data-reveal>
+        <span class="section-label-alt">Social Media & Cinematic Reels</span>
+        <div class="v-grid vertical">
+          
+          <article class="v-card">
+            <div class="v-player"><video controls muted loop><source src="videos/reel1.mp4" type="video/mp4"></video></div>
+            <div class="v-meta">
+              <span class="v-tag">Portrait / 9:16</span>
+              <h3 class="v-title">Cinematic Reel 01</h3>
+              <div class="v-tools"><span class="tool-badge">CapCut Desktop</span><span class="tool-badge">Fast Paced</span></div>
+            </div>
+          </article>
+
+          <article class="v-card">
+            <div class="v-player"><video controls muted loop><source src="videos/social1.mp4" type="video/mp4"></video></div>
+            <div class="v-meta">
+              <span class="v-tag">Engagement Content</span>
+              <h3 class="v-title">Social Edit — Lifestyle</h3>
+              <div class="v-tools"><span class="tool-badge">Dynamic Cuts</span></div>
+            </div>
+          </article>
+
+          <article class="v-card">
+            <div class="v-player"><video controls muted loop><source src="videos/ar1.mp4" type="video/mp4"></video></div>
+            <div class="v-meta">
+              <span class="v-tag">Cultural Content</span>
+              <h3 class="v-title">Arabic Content Piece</h3>
+              <div class="v-tools"><span class="tool-badge">Typography</span><span class="tool-badge">Subtitles</span></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="footer" style="border-top: 1px solid var(--border);">
+    <div class="container footer-inner">
+      <a href="index.html" class="footer-logo">Samir<span>.</span>Elnagdi</a>
+      <p class="footer-copy">© 2026 <Samir class="Elnagdi"></Samir> — Post-Production Dept.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

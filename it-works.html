@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Systems & Cybersecurity — Samir.SElnagdi</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+   <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ══ IT PAGE CUSTOM STYLES (WITH IMAGES) ══ */
+    .pj-hero { padding-top: 140px; padding-bottom: 60px; text-align: center; }
+    .pj-back-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); transition: color 0.3s; display: inline-block; margin-bottom: 2rem; }
+    .pj-back-btn:hover { color: var(--text); }
+    
+    .it-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 3rem; padding-bottom: 8rem; }
+    
+    .it-card { background: var(--bg-card); border: 1px solid var(--border); position: relative; transition: all 0.5s cubic-bezier(.16,1,.3,1); overflow: hidden; display: flex; flex-direction: column; }
+    .it-card:hover { border-color: var(--accent); transform: translateY(-8px); box-shadow: var(--shadow); }
+    
+    /* Image Section */
+    .it-media { width: 100%; aspect-ratio: 16/10; background: var(--bg-3); overflow: hidden; border-bottom: 1px solid var(--border); position: relative; }
+    .it-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; filter: brightness(0.8) sepia(0.2) hue-rotate(330deg); /* Gold/Tech tint */ }
+    .it-card:hover .it-media img { transform: scale(1.05); filter: brightness(1) sepia(0); }
+    
+    /* Overlay icon on image */
+    .it-meta-icon { position: absolute; bottom: 1.5rem; left: 1.5rem; font-size: 1.5rem; background: rgba(8,8,10,0.6); padding: 0.5rem; border-radius: 50%; backdrop-filter: blur(4px); border: 1px solid var(--border-2); z-index: 2; opacity: 0.8; }
+
+    .it-info { padding: 2.5rem; flex: 1; display: flex; flex-direction: column; }
+    .it-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1rem; display: block; }
+    .it-title { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 300; margin-bottom: 1.2rem; color: var(--text); line-height: 1.2; }
+    .it-desc { font-size: 0.9rem; color: var(--text-2); line-height: 1.8; margin-bottom: 2rem; flex: 1; }
+    
+    .it-list { list-style: none; margin-bottom: 2.5rem; }
+    .it-list li { font-size: 0.85rem; color: var(--text-3); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.8rem; }
+    .it-list li::before { content: '→'; color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
+
+    .it-tech-stack { display: flex; flex-wrap: wrap; gap: 0.6rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+    .it-tech-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--text-4); border: 1px solid var(--border-2); padding: 0.25rem 0.6rem; }
+
+    @media (max-width: 768px) { .it-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  </style>
+</head>
+<body>
+
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span class="logo-a">Samir</span><span class="logo-dot">.</span><span class="logo-studio">Elnagdi</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
+        <li><a href="index.html#works" class="nav-link">Works</a></li>
+        <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions"><a href="index.html#contact" class="nav-cta magnetic">Let's Talk</a></div>
+    </div>
+  </nav>
+
+  <header class="pj-hero">
+    <div class="container">
+      <a href="index.html#works" class="pj-back-btn magnetic">← Back to Portfolios</a>
+      <div class="section-tag" style="justify-content: center;" data-reveal>Infrastructure & Security</div>
+      <h1 class="section-title" data-reveal data-delay="80" style="font-size: clamp(3rem, 6vw, 5rem);">IT & <em>Cybersecurity</em></h1>
+      <p class="section-sub" data-reveal data-delay="160" style="margin: 0 auto; max-width: 650px;">
+        Building resilient, secure, and scalable digital environments. From enterprise network architecture to proactive threat mitigation and data integrity.
+      </p>
+    </div>
+  </header>
+
+  <section style="padding-top: 2rem;">
+    <div class="container">
+      <div class="it-grid">
+
+        <article class="it-card" data-reveal>
+          <div class="it-media">
+            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop" alt="Security Posture Audit">
+            <span class="it-meta-icon">🛡️</span>
+          </div>
+          <div class="it-info">
+            <span class="it-tag">Cybersecurity</span>
+            <h3 class="it-title">Security Posture Audit & Hardening</h3>
+            <p class="it-desc">Comprehensive vulnerability assessment and systems hardening for a regional service provider, ensuring compliance with data protection standards.</p>
+            <ul class="it-list">
+              <li>End-to-end encryption protocols</li>
+              <li>Multi-factor authentication (MFA)</li>
+              <li>Intrusion detection (IDS) setup</li>
+            </ul>
+            <div class="it-tech-stack">
+              <span class="it-tech-tag">Firewalls</span><span class="it-tech-tag">SSL/TLS</span><span class="it-tech-tag">Pen-Testing</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="it-card" data-reveal data-delay="100">
+          <div class="it-media">
+            <img src="https://images.unsplash.com/photo-1597733336794-12d05021d510?q=80&w=800&auto=format&fit=crop" alt="Hybrid Cloud Migration">
+            <span class="it-meta-icon">☁️</span>
+          </div>
+          <div class="it-info">
+            <span class="it-tag">Cloud Infrastructure</span>
+            <h3 class="it-title">Hybrid Cloud Environment Migration</h3>
+            <p class="it-desc">Seamlessly transitioning legacy on-premise hardware to a scalable, cost-optimised hybrid cloud architecture with AWS and Azure.</p>
+            <ul class="it-list">
+              <li>Zero-downtime data migration</li>
+              <li>Load balancing & scaling</li>
+              <li>Automated off-site backups</li>
+            </ul>
+            <div class="it-tech-stack">
+              <span class="it-tech-tag">AWS</span><span class="it-tech-tag">Azure</span><span class="it-tech-tag">Docker</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="it-card" data-reveal data-delay="200">
+          <div class="it-media">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop" alt="Enterprise Network Design">
+            <span class="it-meta-icon">🖥️</span>
+          </div>
+          <div class="it-info">
+            <span class="it-tag">Networking</span>
+            <h3 class="it-title">High-Availability Enterprise Network</h3>
+            <p class="it-desc">Architecting a resilient network core with multi-site VPN connectivity, load failover, and segmented VLAN security.</p>
+            <ul class="it-list">
+              <li>Segmented VLANs for security</li>
+              <li>Failover systems</li>
+              <li>Multi-site VPN (Cisco/MikroTik)</li>
+            </ul>
+            <div class="it-tech-stack">
+              <span class="it-tech-tag">Cisco</span><span class="it-tech-tag">MikroTik</span><span class="it-tech-tag">VPN</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="it-card" data-reveal>
+          <div class="it-media">
+            <img src="https://images.unsplash.com/photo-1629652487043-fb2825838f8c?q=80&w=800&auto=format&fit=crop" alt="Windows Server Domain">
+            <span class="it-meta-icon">⚙️</span>
+          </div>
+          <div class="it-info">
+            <span class="it-tag">System Admin</span>
+            <h3 class="it-title">Windows Server Domain Deployment</h3>
+            <p class="it-desc">Deployment and full management of Active Directory Domain Services (ADDS) for centralised business control and group policy.</p>
+            <ul class="it-list">
+              <li>Group Policy Objects (GPO)</li>
+              <li>DNS & DHCP configuration</li>
+              <li>Centralised file services</li>
+            </ul>
+            <div class="it-tech-stack">
+              <span class="it-tech-tag">Windows Server 2022</span><span class="it-tech-tag">ADDS</span><span class="it-tech-tag">GPO</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer" style="border-top: 1px solid var(--border);">
+    <div class="container footer-inner">
+      <a href="index.html" class="footer-logo">Samir<span>.</span>Elnagdi</a>
+      <p class="footer-copy">© 2026 <Samir class="elnagdi"></Samir> — Systems Engineering Dept.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
