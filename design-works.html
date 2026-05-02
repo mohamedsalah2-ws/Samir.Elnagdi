@@ -128,11 +128,45 @@
       transform: rotate(90deg); 
     }
 
+    /* ══ تصميم أسهم التنقل ══ */
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 50px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 100000;
+      user-select: none;
+      padding: 20px;
+    }
+
+    .lightbox-nav:hover {
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
     @media (max-width: 768px) {
       .close-lightbox {
         top: 15px;
         right: 20px;
       }
+      .lightbox-nav {
+        font-size: 35px;
+        padding: 15px;
+      }
+      .lightbox-prev { left: 0; }
+      .lightbox-next { right: 0; }
     }
   </style>
 </head>
@@ -436,6 +470,11 @@
   <!-- 🖼️ الشاشة المنبثقة لعرض الصور (Lightbox Modal) -->
   <div id="image-lightbox" class="lightbox-modal" onclick="closeLightbox(event)">
     <span class="close-lightbox" title="Close" onclick="closeLightbox(event)">&times;</span>
+    
+    <!-- أسهم التنقل -->
+    <span class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1, event)">&#10094;</span>
+    <span class="lightbox-nav lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</span>
+    
     <img class="lightbox-content" id="lightbox-img" alt="Full screen design">
   </div>
 
@@ -449,9 +488,22 @@
   <script src="script.js"></script>
   
   <script>
+    let currentImageIndex = 0;
+    let allImages = [];
+
+    // تجميع مسارات كل الصور بمجرد تحميل الصفحة
+    document.addEventListener("DOMContentLoaded", () => {
+      const imgElements = document.querySelectorAll('.design-card img');
+      allImages = Array.from(imgElements).map(img => img.getAttribute('src'));
+    });
+
     function openLightbox(imgSrc) {
       const lightbox = document.getElementById('image-lightbox');
       const lightboxImg = document.getElementById('lightbox-img');
+      
+      // تحديد رقم (Index) الصورة الحالية من المصفوفة
+      currentImageIndex = allImages.indexOf(imgSrc);
+      if (currentImageIndex === -1) currentImageIndex = 0; 
       
       lightboxImg.src = imgSrc;
       
@@ -462,7 +514,8 @@
     }
 
     function closeLightbox(event) {
-      if(event.target.id === 'lightbox-img') return;
+      // منع الإغلاق إذا تم الضغط على الصورة أو أسهم التنقل
+      if(event && (event.target.id === 'lightbox-img' || event.target.classList.contains('lightbox-nav'))) return;
       
       const lightbox = document.getElementById('image-lightbox');
       lightbox.classList.remove('show');
@@ -471,6 +524,33 @@
         lightbox.style.display = 'none';
       }, 400); 
     }
+
+    function navigateLightbox(step, event) {
+      // منع تشغيل حدث الإغلاق الخاص بالخلفية
+      if (event) event.stopPropagation(); 
+      
+      currentImageIndex += step;
+      
+      // العودة للبداية إذا وصلنا لآخر صورة، والعكس صحيح
+      if (currentImageIndex >= allImages.length) {
+        currentImageIndex = 0;
+      } else if (currentImageIndex < 0) {
+        currentImageIndex = allImages.length - 1;
+      }
+      
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = allImages[currentImageIndex];
+    }
+
+    // دعم أزرار الكيبورد (يمين، يسار للتنقل - زر الهروب Esc للإغلاق)
+    document.addEventListener('keydown', function(event) {
+      const lightbox = document.getElementById('image-lightbox');
+      if (lightbox.classList.contains('show')) {
+        if (event.key === 'ArrowRight') navigateLightbox(1);
+        if (event.key === 'ArrowLeft') navigateLightbox(-1);
+        if (event.key === 'Escape') closeLightbox();
+      }
+    });
   </script>
 </body>
 </html>
