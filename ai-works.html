@@ -114,8 +114,8 @@
     /* حاوية الفيديو في الـ Lightbox */
     .lightbox-content {
       width: auto;
-      max-width: 90%; /* أقصى عرض 90% من الشاشة */
-      max-height: 90vh; /* أقصى ارتفاع 90% من الشاشة عشان مفيش سكرول يحصل */
+      max-width: 90%; 
+      max-height: 90vh; 
       border-radius: 8px;
       box-shadow: 0 20px 60px rgba(0,0,0,0.8);
       transform: translateY(20px) scale(0.95);
@@ -125,6 +125,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
     }
 
     .lightbox-modal.show .lightbox-content {
@@ -134,12 +135,12 @@
     /* الفيديو نفسه داخل الـ Lightbox */
     .lightbox-content video {
       max-width: 100%;
-      max-height: 90vh; /* يجبر الفيديو انه ما يكبرش عن ارتفاع الشاشة */
+      max-height: 90vh; 
       width: auto;
       height: auto;
       display: block;
-      object-fit: contain; /* عشان يحافظ على أبعاده الطبيعية بدون قص */
-      outline: none; /* شيل الخط اللي بيظهر حوالين الفيديو لما تضغط عليه */
+      object-fit: contain; 
+      outline: none; 
     }
 
     .close-lightbox {
@@ -160,11 +161,38 @@
       transform: rotate(90deg); 
     }
 
+    /* ══ تصميم أسهم التنقل ══ */
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 50px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 100000;
+      user-select: none;
+      padding: 20px;
+    }
+
+    .lightbox-nav:hover {
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
     @media (max-width: 768px) {
       .close-lightbox { top: 15px; right: 20px; }
-      .lightbox-content {
-        max-width: 95%; /* في الموبايل ياخد مساحة أكبر شوية من العرض */
+      .lightbox-content { max-width: 95%; }
+      .lightbox-nav {
+        font-size: 35px;
+        padding: 15px;
       }
+      .lightbox-prev { left: 0; }
+      .lightbox-next { right: 0; }
     }
   </style>
 </head>
@@ -204,7 +232,7 @@
       <div class="ai-group" data-reveal>
         <div class="group-header">
           <h2 class="group-title">AI Video Synthesis (Runway/Kling)</h2>
-          <span class="group-count">04 Projects</span>
+          <span class="group-count">15 Projects</span>
         </div>
         
         <div class="ai-grid">
@@ -314,15 +342,18 @@
   </article>
 </div>
 
-    
-
     </div>
   </section>
 
   <!-- 🎞️ الشاشة المنبثقة لعرض الفيديوهات (Video Lightbox) -->
   <div id="video-lightbox" class="lightbox-modal" onclick="closeVideoLightbox(event)">
     <span class="close-lightbox" title="Close" onclick="closeVideoLightbox(event)">&times;</span>
-    <div class="lightbox-content">
+    
+    <!-- أسهم التنقل -->
+    <span class="lightbox-nav lightbox-prev" onclick="navigateVideoLightbox(-1, event)">&#10094;</span>
+    <span class="lightbox-nav lightbox-next" onclick="navigateVideoLightbox(1, event)">&#10095;</span>
+
+    <div class="lightbox-content" onclick="event.stopPropagation()">
       <video id="lightbox-vid" controls autoplay>
         <!-- سيتم حقن مسار الفيديو هنا برمجياً -->
       </video>
@@ -340,9 +371,22 @@
 
   <!-- سكريبت تشغيل الفيديوهات في الـ Lightbox -->
   <script>
+    let currentVideoIndex = 0;
+    let allVideos = [];
+
+    // تجميع مسارات كل الفيديوهات بمجرد تحميل الصفحة
+    document.addEventListener("DOMContentLoaded", () => {
+      const sourceElements = document.querySelectorAll('.ai-card source');
+      allVideos = Array.from(sourceElements).map(source => source.getAttribute('src'));
+    });
+
     function openVideoLightbox(videoSrc) {
       const lightbox = document.getElementById('video-lightbox');
       const lightboxVid = document.getElementById('lightbox-vid');
+      
+      // تحديد رقم (Index) الفيديو الحالي من المصفوفة
+      currentVideoIndex = allVideos.indexOf(videoSrc);
+      if (currentVideoIndex === -1) currentVideoIndex = 0;
       
       // وضع مسار الفيديو وتشغيله
       lightboxVid.src = videoSrc;
@@ -356,8 +400,8 @@
     }
 
     function closeVideoLightbox(event) {
-      // منع الإغلاق إذا ضغط المستخدم على الفيديو نفسه للتحكم فيه
-      if(event.target.id === 'lightbox-vid') return;
+      // منع الإغلاق إذا تم الضغط على الفيديو أو أزرار التحكم أو أسهم التنقل
+      if(event && (event.target.tagName.toLowerCase() === 'video' || event.target.classList.contains('lightbox-nav'))) return;
       
       const lightbox = document.getElementById('video-lightbox');
       const lightboxVid = document.getElementById('lightbox-vid');
@@ -365,12 +409,40 @@
       // إيقاف الفيديو وإخفاء الشاشة
       lightbox.classList.remove('show');
       lightboxVid.pause();
-      lightboxVid.src = ""; // تفريغ المسار لمنع استمرار الصوت في الخلفية
       
       setTimeout(() => {
         lightbox.style.display = 'none';
+        lightboxVid.src = ""; // تفريغ المسار لمنع استمرار الصوت في الخلفية
       }, 400); 
     }
+
+    function navigateVideoLightbox(step, event) {
+      // منع تشغيل حدث الإغلاق الخاص بالخلفية
+      if (event) event.stopPropagation(); 
+      
+      currentVideoIndex += step;
+      
+      // الدوران إذا وصلنا للنهاية أو البداية
+      if (currentVideoIndex >= allVideos.length) {
+        currentVideoIndex = 0;
+      } else if (currentVideoIndex < 0) {
+        currentVideoIndex = allVideos.length - 1;
+      }
+      
+      const lightboxVid = document.getElementById('lightbox-vid');
+      lightboxVid.src = allVideos[currentVideoIndex];
+      lightboxVid.play(); // تشغيل الفيديو الجديد فوراً
+    }
+
+    // دعم أزرار الكيبورد
+    document.addEventListener('keydown', function(event) {
+      const lightbox = document.getElementById('video-lightbox');
+      if (lightbox.classList.contains('show')) {
+        if (event.key === 'ArrowRight') navigateVideoLightbox(1);
+        if (event.key === 'ArrowLeft') navigateVideoLightbox(-1);
+        if (event.key === 'Escape') closeVideoLightbox();
+      }
+    });
   </script>
 </body>
 </html>
