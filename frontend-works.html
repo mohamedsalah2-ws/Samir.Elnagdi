@@ -1,337 +1,331 @@
 <!DOCTYPE html>
-
 <html lang="en" data-theme="dark">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Frontend & Web Portfolio — Samir.Elnagdi</title>
-
   <link rel="icon" type="image/png" href="favicon.png">
-
-   <link rel="apple-touch-icon" href="favicon.png">
-
+  <link rel="apple-touch-icon" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Cairo:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
-
   <style>
-
     /* ══ FRONTEND PAGE CUSTOM STYLES ══ */
-
     .pj-hero { padding-top: 140px; padding-bottom: 60px; text-align: center; }
-
     .pj-back-btn { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); transition: color 0.3s; display: inline-block; margin-bottom: 2rem; }
-
     .pj-back-btn:hover { color: var(--text); }
-
     
-
     .fe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); gap: 3rem; padding-bottom: 8rem; }
-
     
-
     .fe-card { background: var(--bg-card); border: 1px solid var(--border); position: relative; transition: all 0.5s cubic-bezier(.16,1,.3,1); display: flex; flex-direction: column; }
-
     .fe-card:hover { transform: translateY(-8px); border-color: var(--accent); box-shadow: var(--shadow); }
-
     
-
-    .fe-media { width: 100%; aspect-ratio: 16/10; background: var(--bg-3); overflow: hidden; border-bottom: 1px solid var(--border); }
-
+    .fe-media { width: 100%; aspect-ratio: 16/10; background: var(--bg-3); overflow: hidden; border-bottom: 1px solid var(--border); cursor: zoom-in; }
     .fe-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-
     .fe-card:hover .fe-media img { transform: scale(1.04); }
-
     
-
     .fe-info { padding: 2.2rem; flex: 1; display: flex; flex-direction: column; }
-
     .fe-num { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--text-4); margin-bottom: 1rem; display: block; }
-
-    .fe-tag { position: absolute; top: 1.5rem; right: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; padding: 0.3rem 0.7rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.1em; z-index: 2; }
-
+    .fe-tag { position: absolute; top: 1.5rem; right: 1.5rem; font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; padding: 0.3rem 0.7rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.1em; z-index: 2; pointer-events: none; }
     .fe-tag.fullstack { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(200,162,85,0.3); }
-
     .fe-tag.frontend { background: rgba(240,236,226,0.05); color: var(--text-2); border: 1px solid var(--border-2); }
-
     
-
     .fe-title { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 300; margin-bottom: 1rem; color: var(--text); }
-
     .fe-desc { font-size: 0.9rem; color: var(--text-2); line-height: 1.8; margin-bottom: 1.8rem; flex: 1; }
-
     
-
     .fe-stack { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; }
-
     .stack-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--text-3); border: 1px solid var(--border); padding: 0.25rem 0.6rem; }
-
     
-
     .fe-links { display: flex; gap: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
-
     .fe-link { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); transition: color 0.3s; }
-
     .fe-link:hover { color: var(--text); }
-
     .fe-link.disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
-
-
 
     @media (max-width: 768px) { .fe-grid { grid-template-columns: 1fr; gap: 2rem; } }
 
+    /* ══ تصميم الشاشة المنبثقة للصور (Lightbox) ══ */
+    .lightbox-modal {
+      display: none; 
+      position: fixed;
+      z-index: 99999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(5, 5, 7, 0.96); 
+      backdrop-filter: blur(8px); 
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+    }
+
+    .lightbox-modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 85vh; 
+      border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+      transform: translateY(20px) scale(0.95);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      cursor: default;
+    }
+
+    .lightbox-modal.show .lightbox-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 40px;
+      font-weight: 200;
+      cursor: pointer;
+      transition: color 0.3s ease, transform 0.3s ease;
+      z-index: 100000;
+      line-height: 1;
+    }
+
+    .close-lightbox:hover {
+      color: #fff;
+      transform: rotate(90deg); 
+    }
+
+    /* ══ تصميم أسهم التنقل ══ */
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 50px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 100000;
+      user-select: none;
+      padding: 20px;
+    }
+
+    .lightbox-nav:hover {
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+
+    @media (max-width: 768px) {
+      .close-lightbox { top: 15px; right: 20px; }
+      .lightbox-nav { font-size: 35px; padding: 15px; }
+      .lightbox-prev { left: 0; }
+      .lightbox-next { right: 0; }
+    }
   </style>
-
 </head>
-
 <body>
-
-
 
   <div class="grain-overlay" aria-hidden="true"></div>
 
-
-
   <nav id="nav">
-
     <div class="nav-inner">
-
       <a href="index.html" class="nav-logo"><span class="logo-a">Samir</span><span class="logo-dot">.</span><span class="logo-studio">ELnagdi</span></a>
-
       <ul class="nav-links">
-
         <li><a href="index.html" class="nav-link">Home</a></li>
-
         <li><a href="index.html#expertise" class="nav-link">Expertise</a></li>
-
         <li><a href="index.html#works" class="nav-link">Works</a></li>
-
         <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-
       </ul>
-
       <div class="nav-actions"><a href="index.html#contact" class="nav-cta magnetic">Let's Talk</a></div>
-
     </div>
-
   </nav>
 
-
-
   <header class="pj-hero">
-
     <div class="container">
-
       <a href="index.html#works" class="pj-back-btn magnetic">← Back to Portfolios</a>
-
       <div class="section-tag" style="justify-content: center;" data-reveal>Web & UI Architecture</div>
-
       <h1 class="section-title" data-reveal data-delay="80" style="font-size: clamp(3rem, 6vw, 5rem);">Frontend <em>Engineering</em></h1>
-
       <p class="section-sub" data-reveal data-delay="160" style="margin: 0 auto; max-width: 650px;">
-
         Building high-performance digital experiences through modern frameworks, fluid animations, and pixel-perfect implementation.
-
       </p>
-
     </div>
-
   </header>
 
-
-
   <section>
-
     <div class="container">
-
       <div class="fe-grid">
 
-
-
         <article class="fe-card" data-reveal>
-
           <span class="fe-tag fullstack">Full Stack</span>
-
-          <div class="fe-media"><img src="images/frontend/project1.jpg" alt="ALmansoori Website"></div>
-
+          <div class="fe-media" onclick="openLightbox('images/frontend/project1.jpg')"><img src="images/frontend/project1.jpg" alt="ALmansoori Website"></div>
           <div class="fe-info">
-
             <span class="fe-num">/01</span>
-
             <h3 class="fe-title">ALmansoori Elite Properties</h3>
-
             <p class="fe-desc">Developed a full-stack real estate platform featuring dynamic property listings, bilingual support (AR/EN), and an admin dashboard for content management — built with Next.js, Node.js, and REST APIs.</p>
-
             <div class="fe-stack">
-
               <span class="stack-tag">React.js</span><span class="stack-tag">Next.js</span><span class="stack-tag">Node.js</span><span class="stack-tag">UI/UX</span>
-
             </div>
-
             
-
           </div>
-
         </article>
 
-
-
         <article class="fe-card" data-reveal data-delay="100">
-
           <span class="fe-tag fullstack">Full Stack</span>
-
-          <div class="fe-media"><img src="images/frontend/project2.jpg" alt="Elnagdy Website"></div>
-
+          <div class="fe-media" onclick="openLightbox('images/frontend/project2.jpg')"><img src="images/frontend/project2.jpg" alt="Elnagdy Website"></div>
           <div class="fe-info">
-
             <span class="fe-num">/02</span>
-
             <h3 class="fe-title">EL-NAGDI Services</h3>
-
             <p class="fe-desc">Built a responsive multi-page business website with smooth UI interactions, optimized performance, and SEO-friendly structure — using React, Next.js, and Tailwind CSS.</p>
-
             <div class="fe-stack">
-
               <span class="stack-tag">React</span><span class="stack-tag">Tailwind</span><span class="stack-tag">Next.js</span><span class="stack-tag">API</span>
-
             </div>
-
             
-
           </div>
-
         </article>
 
-
-
         <article class="fe-card" data-reveal>
-
           <span class="fe-tag frontend">Frontend</span>
-
-          <div class="fe-media">
-
+          <div class="fe-media" onclick="openLightbox('images/frontend/project5.jpg')">
             <img src="images/frontend/project5.jpg" alt="Mohamed Salah Portfolio">
-
             <div class="fe-media-overlay"></div>
-
           </div>
-
           <div class="fe-info">
-
             <span class="fe-num">/03</span>
-
             <h3 class="fe-title">Mohamed Salah Portfolio</h3>
-
             <p class="fe-desc">Designed and built a personal developer portfolio with neural network visuals, GSAP-powered animations, and a bold typographic identity — fully responsive and performance-optimized.</p>
-
             <div class="fe-stack">
-
               <span class="stack-tag">HTML5</span>
-
               <span class="stack-tag">CSS3</span>
-
               <span class="stack-tag">JavaScript</span>
-
               <span class="stack-tag">GSAP</span>
-
             </div>
-
             
-
           </div>
-
         </article>
-
-
 
         <article class="fe-card" data-reveal>
-
           <span class="fe-tag frontend">Frontend</span>
-
-          <div class="fe-media"><img src="images/frontend/project3.jpg" alt="Ahfad Pharaanah Website"></div>
-
+          <div class="fe-media" onclick="openLightbox('images/frontend/project3.jpg')"><img src="images/frontend/project3.jpg" alt="Ahfad Pharaanah Website"></div>
           <div class="fe-info">
-
             <span class="fe-num">/04</span>
-
             <h3 class="fe-title">Ahfad Al-Pharaohs Interior</h3>
-
             <p class="fe-desc">Designed and developed a luxury landing page with smooth scroll animations, an interactive gallery section, and a fully responsive layout — using vanilla HTML, CSS, and JavaScript.</p>
-
             <div class="fe-stack">
-
               <span class="stack-tag">HTML5</span><span class="stack-tag">CSS3</span><span class="stack-tag">JavaScript</span><span class="stack-tag">GSAP</span>
-
             </div>
-
             
-
           </div>
-
         </article>
-
-
 
         <article class="fe-card" data-reveal data-delay="100">
-
           <span class="fe-tag frontend">Frontend</span>
-
-          <div class="fe-media"><img src="images/frontend/sports-house.jpg" alt="Sports House Website"></div>
-
+          <div class="fe-media" onclick="openLightbox('images/frontend/sports-house.jpg')"><img src="images/frontend/sports-house.jpg" alt="Sports House Website"></div>
           <div class="fe-info">
-
             <span class="fe-num">/05</span>
-
             <h3 class="fe-title">Sports House Elite</h3>
-
             <p class="fe-desc">Built a dark-themed sports equipment landing page featuring a custom infinite marquee animation, neon UI accents, and a fully responsive layout — using HTML5 and CSS3.</p>
-
             <div class="fe-stack">
-
               <span class="stack-tag">HTML5</span><span class="stack-tag">CSS3</span><span class="stack-tag">UI/Animations</span><span class="stack-tag">Responsive</span>
-
             </div>
-
             
-
           </div>
-
         </article>
-
-
 
       </div>
-
     </div>
-
   </section>
 
-
+  <!-- 🖼️ الشاشة المنبثقة لعرض الصور (Lightbox Modal) -->
+  <div id="image-lightbox" class="lightbox-modal" onclick="closeLightbox(event)">
+    <span class="close-lightbox" title="Close" onclick="closeLightbox(event)">&times;</span>
+    
+    <!-- أسهم التنقل -->
+    <span class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1, event)">&#10094;</span>
+    <span class="lightbox-nav lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</span>
+    
+    <img class="lightbox-content" id="lightbox-img" alt="Full screen preview">
+  </div>
 
   <footer id="footer" style="border-top: 1px solid var(--border);">
-
     <div class="container footer-inner">
-
       <a href="index.html" class="footer-logo">Samir<span>.</span>ELnagdi</a>
-
       <p class="footer-copy">© 2026 <Samir class="Elnagdi"></Samir> — Web Engineering Dept.</p>
-
     </div>
-
   </footer>
-
-
 
   <script src="script.js"></script>
 
-</body>
+  <script>
+    let currentImageIndex = 0;
+    let allImages = [];
 
-</html> 
+    // تجميع مسارات كل الصور بمجرد تحميل الصفحة
+    document.addEventListener("DOMContentLoaded", () => {
+      const imgElements = document.querySelectorAll('.fe-media img');
+      allImages = Array.from(imgElements).map(img => img.getAttribute('src'));
+    });
+
+    function openLightbox(imgSrc) {
+      const lightbox = document.getElementById('image-lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      
+      // تحديد رقم (Index) الصورة الحالية من المصفوفة
+      currentImageIndex = allImages.indexOf(imgSrc);
+      if (currentImageIndex === -1) currentImageIndex = 0; 
+      
+      lightboxImg.src = imgSrc;
+      
+      lightbox.style.display = 'flex';
+      setTimeout(() => {
+        lightbox.classList.add('show');
+      }, 10);
+    }
+
+    function closeLightbox(event) {
+      // منع الإغلاق إذا تم الضغط على الصورة أو أسهم التنقل
+      if(event && (event.target.id === 'lightbox-img' || event.target.classList.contains('lightbox-nav'))) return;
+      
+      const lightbox = document.getElementById('image-lightbox');
+      lightbox.classList.remove('show');
+      
+      setTimeout(() => {
+        lightbox.style.display = 'none';
+      }, 400); 
+    }
+
+    function navigateLightbox(step, event) {
+      // منع تشغيل حدث الإغلاق الخاص بالخلفية
+      if (event) event.stopPropagation(); 
+      
+      currentImageIndex += step;
+      
+      // العودة للبداية إذا وصلنا لآخر صورة، والعكس صحيح
+      if (currentImageIndex >= allImages.length) {
+        currentImageIndex = 0;
+      } else if (currentImageIndex < 0) {
+        currentImageIndex = allImages.length - 1;
+      }
+      
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = allImages[currentImageIndex];
+    }
+
+    // دعم أزرار الكيبورد (يمين، يسار للتنقل - زر الهروب Esc للإغلاق)
+    document.addEventListener('keydown', function(event) {
+      const lightbox = document.getElementById('image-lightbox');
+      if (lightbox.classList.contains('show')) {
+        if (event.key === 'ArrowRight') navigateLightbox(1);
+        if (event.key === 'ArrowLeft') navigateLightbox(-1);
+        if (event.key === 'Escape') closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
