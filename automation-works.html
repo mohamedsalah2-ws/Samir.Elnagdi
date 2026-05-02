@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Automation Projects — Samir.Elnagdi</title>
   <link rel="icon" type="image/png" href="favicon.png">
-   <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,200;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -18,16 +18,112 @@
     .auto-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; margin-top: 3.5rem; padding-bottom: 8rem; }
     .auto-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; position: relative; transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s; }
     .auto-card:hover { transform: translateY(-6px); border-color: var(--border-3); box-shadow: var(--shadow-sm); }
-    .auto-img { width: 100%; aspect-ratio: 16/9; background: var(--bg-3); overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-2); position: relative; }
+    .auto-img { width: 100%; aspect-ratio: 16/9; background: var(--bg-3); overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-2); position: relative; cursor: zoom-in; }
     .auto-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
     .auto-card:hover .auto-img img { transform: scale(1.05); }
-    .auto-badge { position: absolute; top: 2.5rem; right: 2.5rem; background: rgba(93, 191, 160, 0.12); color: var(--green); border: 1px solid rgba(93, 191, 160, 0.35); padding: 0.35rem 0.8rem; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; backdrop-filter: blur(4px); z-index: 2; }
+    .auto-badge { position: absolute; top: 2.5rem; right: 2.5rem; background: rgba(93, 191, 160, 0.12); color: var(--green); border: 1px solid rgba(93, 191, 160, 0.35); padding: 0.35rem 0.8rem; font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; backdrop-filter: blur(4px); z-index: 2; pointer-events: none; }
     .auto-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 1.2rem; }
     .flow-node { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--accent); background: var(--accent-dim2); border: 1px solid rgba(200,162,85,0.25); padding: 0.35rem 0.65rem; }
     .flow-arrow { color: var(--text-4); font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; }
     .auto-title { font-family: 'Fraunces', Georgia, serif; font-size: 1.35rem; font-weight: 300; color: var(--text); margin-bottom: 0.8rem; line-height: 1.2; }
     .auto-desc { font-size: 0.88rem; color: var(--text-2); line-height: 1.75; }
     @media (max-width: 768px) { .auto-grid { grid-template-columns: 1fr; } .auto-badge { top: 2rem; right: 2rem; } }
+
+    /* ══ تصميم الشاشة المنبثقة للصور (Lightbox) ══ */
+    .lightbox-modal {
+      display: none; 
+      position: fixed;
+      z-index: 99999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(5, 5, 7, 0.96); 
+      backdrop-filter: blur(8px); 
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+    }
+
+    .lightbox-modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 85vh; 
+      border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+      transform: translateY(20px) scale(0.95);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      cursor: default;
+    }
+
+    .lightbox-modal.show .lightbox-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .close-lightbox {
+      position: absolute;
+      top: 25px;
+      right: 35px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 40px;
+      font-weight: 200;
+      cursor: pointer;
+      transition: color 0.3s ease, transform 0.3s ease;
+      z-index: 100000;
+      line-height: 1;
+    }
+
+    .close-lightbox:hover {
+      color: #fff;
+      transform: rotate(90deg); 
+    }
+
+    /* ══ تصميم أسهم التنقل ══ */
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 50px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 100000;
+      user-select: none;
+      padding: 20px;
+    }
+
+    .lightbox-nav:hover {
+      color: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .close-lightbox {
+        top: 15px;
+        right: 20px;
+      }
+      .lightbox-nav {
+        font-size: 35px;
+        padding: 15px;
+      }
+      .lightbox-prev { left: 0; }
+      .lightbox-next { right: 0; }
+    }
   </style>
 </head>
 <body>
@@ -63,7 +159,7 @@
       <div class="auto-grid">
 
         <div class="auto-card" data-reveal data-delay="0">
-          <div class="auto-img"><img src="images/auto/auto3.jpg" alt="RAG Chatbot"></div>
+          <div class="auto-img" onclick="openLightbox('images/auto/auto3.jpg')"><img src="images/auto/auto3.jpg" alt="RAG Chatbot"></div>
           <div class="auto-flow">
             <span class="flow-node">Knowledge Base</span><span class="flow-arrow">→</span>
             <span class="flow-node">Pinecone</span><span class="flow-arrow">→</span><span class="flow-node">Chat</span>
@@ -73,7 +169,7 @@
         </div>
 
         <div class="auto-card" data-reveal data-delay="100">
-          <div class="auto-img"><img src="images/auto/auto2.jpg" alt="WhatsApp Multi-Agent"></div>
+          <div class="auto-img" onclick="openLightbox('images/auto/auto2.jpg')"><img src="images/auto/auto2.jpg" alt="WhatsApp Multi-Agent"></div>
           <span class="auto-badge">Live</span>
           <div class="auto-flow">
             <span class="flow-node">Webhook</span><span class="flow-arrow">→</span>
@@ -84,7 +180,7 @@
         </div>
 
         <div class="auto-card" data-reveal data-delay="200">
-          <div class="auto-img"><img src="images/auto/auto5.jpg" alt="Telegram Multi-Agent Bot"></div>
+          <div class="auto-img" onclick="openLightbox('images/auto/auto5.jpg')"><img src="images/auto/auto5.jpg" alt="Telegram Multi-Agent Bot"></div>
           <span class="auto-badge">Live</span>
           <div class="auto-flow">
             <span class="flow-node">Telegram Trigger</span><span class="flow-arrow">→</span>
@@ -95,7 +191,7 @@
         </div>
 
         <div class="auto-card" data-reveal data-delay="0">
-          <div class="auto-img"><img src="images/auto/auto8.jpg" alt="HR Automation Agent"></div>
+          <div class="auto-img" onclick="openLightbox('images/auto/auto8.jpg')"><img src="images/auto/auto8.jpg" alt="HR Automation Agent"></div>
           <span class="auto-badge">Live</span>
           <div class="auto-flow">
             <span class="flow-node">Telegram Trigger</span><span class="flow-arrow">→</span>
@@ -106,7 +202,7 @@
         </div>
 
         <div class="auto-card" data-reveal data-delay="100">
-          <div class="auto-img"><img src="images/auto/auto6.jpg" alt="AI Agent — Grok + Sheets + Gmail"></div>
+          <div class="auto-img" onclick="openLightbox('images/auto/auto6.jpg')"><img src="images/auto/auto6.jpg" alt="AI Agent — Grok + Sheets + Gmail"></div>
           <span class="auto-badge">Live</span>
           <div class="auto-flow">
             <span class="flow-node">Chat Trigger</span><span class="flow-arrow">→</span>
@@ -117,7 +213,7 @@
         </div>
 
         <div class="auto-card" data-reveal data-delay="200">
-          <div class="auto-img"><img src="images/auto/auto1.jpg" alt="Messenger Multi-Agent"></div>
+          <div class="auto-img" onclick="openLightbox('images/auto/auto1.jpg')"><img src="images/auto/auto1.jpg" alt="Messenger Multi-Agent"></div>
           <span class="auto-badge">Live</span>
           <div class="auto-flow">
             <span class="flow-node">Webhook</span><span class="flow-arrow">→</span>
@@ -128,7 +224,7 @@
         </div>
 
         <div class="auto-card" data-reveal data-delay="0">
-          <div class="auto-img"><img src="images/auto/auto4.jpg" alt="Form → AI → Google Sheets"></div>
+          <div class="auto-img" onclick="openLightbox('images/auto/auto4.jpg')"><img src="images/auto/auto4.jpg" alt="Form → AI → Google Sheets"></div>
           <div class="auto-flow">
             <span class="flow-node">Form Submit</span><span class="flow-arrow">→</span>
             <span class="flow-node">OpenAI</span><span class="flow-arrow">→</span><span class="flow-node">Sheets</span>
@@ -138,7 +234,7 @@
         </div>
 
         <div class="auto-card" data-reveal data-delay="100">
-          <div class="auto-img"><img src="images/auto/auto7.jpg" alt="Telegram Video Downloader Bot"></div>
+          <div class="auto-img" onclick="openLightbox('images/auto/auto7.jpg')"><img src="images/auto/auto7.jpg" alt="Telegram Video Downloader Bot"></div>
           <span class="auto-badge">Live</span>
           <div class="auto-flow">
             <span class="flow-node">Telegram Trigger</span><span class="flow-arrow">→</span>
@@ -162,6 +258,17 @@
     </div>
   </section>
 
+  <!-- 🖼️ الشاشة المنبثقة لعرض الصور (Lightbox Modal) -->
+  <div id="image-lightbox" class="lightbox-modal" onclick="closeLightbox(event)">
+    <span class="close-lightbox" title="Close" onclick="closeLightbox(event)">&times;</span>
+    
+    <!-- أسهم التنقل -->
+    <span class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1, event)">&#10094;</span>
+    <span class="lightbox-nav lightbox-next" onclick="navigateLightbox(1, event)">&#10095;</span>
+    
+    <img class="lightbox-content" id="lightbox-img" alt="Full screen design">
+  </div>
+
   <footer id="footer" style="border-top: 1px solid var(--border);">
     <div class="container footer-inner">
       <a href="index.html" class="footer-logo">Samir<span>.</span>Elnagdi</a>
@@ -170,5 +277,71 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <script>
+    let currentImageIndex = 0;
+    let allImages = [];
+
+    // تجميع مسارات كل الصور بمجرد تحميل الصفحة
+    document.addEventListener("DOMContentLoaded", () => {
+      const imgElements = document.querySelectorAll('.auto-img img');
+      allImages = Array.from(imgElements).map(img => img.getAttribute('src'));
+    });
+
+    function openLightbox(imgSrc) {
+      const lightbox = document.getElementById('image-lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      
+      // تحديد رقم (Index) الصورة الحالية من المصفوفة
+      currentImageIndex = allImages.indexOf(imgSrc);
+      if (currentImageIndex === -1) currentImageIndex = 0; 
+      
+      lightboxImg.src = imgSrc;
+      
+      lightbox.style.display = 'flex';
+      setTimeout(() => {
+        lightbox.classList.add('show');
+      }, 10);
+    }
+
+    function closeLightbox(event) {
+      // منع الإغلاق إذا تم الضغط على الصورة أو أسهم التنقل
+      if(event && (event.target.id === 'lightbox-img' || event.target.classList.contains('lightbox-nav'))) return;
+      
+      const lightbox = document.getElementById('image-lightbox');
+      lightbox.classList.remove('show');
+      
+      setTimeout(() => {
+        lightbox.style.display = 'none';
+      }, 400); 
+    }
+
+    function navigateLightbox(step, event) {
+      // منع تشغيل حدث الإغلاق الخاص بالخلفية
+      if (event) event.stopPropagation(); 
+      
+      currentImageIndex += step;
+      
+      // العودة للبداية إذا وصلنا لآخر صورة، والعكس صحيح
+      if (currentImageIndex >= allImages.length) {
+        currentImageIndex = 0;
+      } else if (currentImageIndex < 0) {
+        currentImageIndex = allImages.length - 1;
+      }
+      
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = allImages[currentImageIndex];
+    }
+
+    // دعم أزرار الكيبورد (يمين، يسار للتنقل - زر الهروب Esc للإغلاق)
+    document.addEventListener('keydown', function(event) {
+      const lightbox = document.getElementById('image-lightbox');
+      if (lightbox.classList.contains('show')) {
+        if (event.key === 'ArrowRight') navigateLightbox(1);
+        if (event.key === 'ArrowLeft') navigateLightbox(-1);
+        if (event.key === 'Escape') closeLightbox();
+      }
+    });
+  </script>
 </body>
 </html>
