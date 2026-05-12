@@ -220,6 +220,23 @@ section { padding: 6rem 0; }
 }
 .cta-secondary:hover { color: var(--accent); }
 
+
+.cta-cv {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: color .3s, opacity .3s;
+}
+.cta-cv:hover { opacity: .7; }
+.cta-cv .cta-icon { transition: transform .3s; }
+.cta-cv:hover .cta-icon { transform: translateY(3px); }
+
+
 /* Mahal Visual */
 .mahal-wrapper {
   position: relative; height: 500px;
